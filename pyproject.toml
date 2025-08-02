@@ -4,21 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "my_ai_services_sdk"
-version = "0.1.0"
+version = "0.1.1" # 習慣上，修復 bug 或小調整時，可以增加最後一位版本號
 authors = [
-  { name="Your Name", email="your.email@example.com" }, # 可以換成你自己的資訊
+  { name="Your Name", email="your.email@example.com" },
 ]
 description = "A personal SDK for accessing AI services like Azure and Gemini."
-readme = "README.md" # 建議也新增一個 README.md 檔案
+readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License", # 假設你用 MIT 授權
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
-# 這是最關鍵的部分：告訴 pip 這個套件需要哪些依賴
 dependencies = [
     "azure-cognitiveservices-speech",
     "google-generativeai"
 ]
+
+# --- 新增的區塊 ---
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["my_ai_services_sdk*"]
+exclude = ["tests*"]
