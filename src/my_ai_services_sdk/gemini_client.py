@@ -3,7 +3,7 @@ import os
 import google.generativeai as genai
 
 # 將模型名稱變成一個可以輕鬆修改的常數
-DEFAULT_MODEL = 'gemini-1.5-flash-latest' # 你提到的 Gemini 1.5 Flash
+DEFAULT_MODEL = 'gemini-2.5-flash-lite' # 你提到的 Gemini 1.5 Flash
 
 # --- 核心的、通用的函式 ---
 def generate_content(prompt, model_name=DEFAULT_MODEL):
