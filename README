@@ -1,0 +1,83 @@
+# My AI Services SDK
+
+一個個人專屬的 Python SDK，用來封裝對常用 AI 服務 (例如 Azure Speech, Google Gemini) 的 API 呼叫。
+
+## 功能
+
+*   Azure 語音轉文字 (Speech-to-Text)
+*   Azure 文字轉語音 (Text-to-Speech)
+*   Google Gemini 內容生成與翻譯
+
+## 安裝
+
+在你的專案 `requirements.txt` 中加入以下這行：
+
+```txt
+my_ai_services_sdk @ git+https://github.com/angelo20011016/my-ai-services-sdk.git
+```
+
+然後執行：
+
+```bash
+pip install -r requirements.txt
+```
+
+## 環境變數設定
+
+在使用本 SDK 前，請確保你已經設定好以下環境變數。建議在你的應用專案中使用 `.env` 檔案來管理。
+
+```env
+AZURE_API_KEY="YOUR_AZURE_KEY"
+AZURE_REGION="YOUR_AZURE_REGION"
+GEMINI_API_KEY="YOUR_GEMINI_KEY"
+```
+
+## 快速上手
+
+以下是一個簡單的範例，展示如何使用本 SDK 進行語音辨識和翻譯。
+
+```python
+from dotenv import load_dotenv
+from my_ai_services_sdk import recognize_from_mic, translate_text, speak_text
+
+# 載入 .env 檔案中的環境變數
+load_dotenv()
+
+# 1. 從麥克風辨識中文
+my_text = recognize_from_mic()
+
+if my_text:
+    # 2. 將中文翻譯成日文
+    japanese_text = translate_text(my_text, target_lang="日文")
+    
+    if japanese_text:
+        # 3. 用日文語音播放結果
+        speak_text(japanese_text, voice_name='ja-JP-NanamiNeural')
+```
+
+## API 參考
+
+### `my_ai_services_sdk.recognize_from_mic()`
+從預設麥克風進行一次性語音辨識。
+
+*   **回傳**: `str` | `None` - 辨識成功則返回文字，否則返回 None。
+
+### `my_ai_services_sdk.speak_text(text, voice_name)`
+使用 Azure TTS 將文字轉換為語音並播放。
+
+*   **`text` (str)**: 要轉換的文字。
+*   **`voice_name` (str)**: Azure 語音的名稱，例如 `'zh-TW-HsiaoChenNeural'` 或 `'ja-JP-NanamiNeural'`。
+
+### `my_ai_services_sdk.generate_content(prompt)`
+通用的 Gemini API 呼叫函式。
+
+*   **`prompt` (str)**: 要傳送給 Gemini 模型的完整提示。
+*   **回傳**: `str` | `None` - AI 生成的內容。
+
+### `my_ai_services_sdk.translate_text(text, source_lang, target_lang)`
+方便的翻譯快捷函式。
+
+*   **`text` (str)**: 要翻譯的原文。
+*   **`source_lang` (str)**: 來源語言，預設 "中文"。
+*   **`target_lang` (str)**: 目標語言，預設 "日文"。
+*   **回傳**: `str` | `None` - 翻譯後的文字。
