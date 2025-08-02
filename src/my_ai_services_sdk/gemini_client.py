@@ -26,7 +26,7 @@ def generate_content(prompt, model_name=DEFAULT_MODEL):
     genai.configure(api_key=api_key)
     
     try:
-        print(f"正在使用模型 '{model_name}' 呼叫 Gemini API...")
+        #print(f"正在使用模型 '{model_name}' 呼叫 Gemini API...")
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         print("Gemini API 呼叫成功。")
