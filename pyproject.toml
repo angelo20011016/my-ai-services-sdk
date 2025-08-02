@@ -21,8 +21,7 @@ dependencies = [
     "google-generativeai"
 ]
 
-# --- 新增的區塊 ---
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]  # <--- 把 "." 改成 "src"
 include = ["my_ai_services_sdk*"]
 exclude = ["tests*"]
