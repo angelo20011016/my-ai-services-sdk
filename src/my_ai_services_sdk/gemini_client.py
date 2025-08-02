@@ -29,10 +29,10 @@ def generate_content(prompt, model_name=DEFAULT_MODEL):
         #print(f"正在使用模型 '{model_name}' 呼叫 Gemini API...")
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
-        print("Gemini API 呼叫成功。")
+        print("API 呼叫成功。")
         return response.text
     except Exception as e:
-        print(f"Gemini API 呼叫失敗: {e}")
+        print(f"API 呼叫失敗: {e}")
         return None
 
 # --- 方便使用的快捷函式 (基於通用函式) ---
